@@ -1,0 +1,77 @@
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <!-- Container wrapper -->
+    <div class="container">
+      <!-- Navbar brand -->
+      <a class="navbar-brand" href="#">DatingApp</a>
+  
+      <!-- Toggle button -->
+      <button
+        class="navbar-toggler"
+        type="button"
+        
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <i class="fas fa-bars"></i>
+      </button>
+  
+      <!-- Collapsible wrapper -->
+      <div
+        class="collapse navbar-collapse"
+        id="navbarSupportedContent"
+     
+      >
+        <!-- Left links -->
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0" *ngIf="accountService.currentUser$ |async">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="#">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Link</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link " 
+              >Messages</a
+            >
+          </li>
+      
+        </ul>
+        <!-- Left links -->
+  <div class="dropdown" *ngIf="accountService.currentUser$ |async" dropdown>
+
+<a  class="dropdown-toggle text-light text-decoration-none" dropdownToggle>Welcome User</a>
+<div class="dropdown-menu" *dropdownMenu >
+<a  class="dropdown-item">Edit Profile</a>
+<a  class="dropdown-item" (click)="logout()">Logout</a>
+</div>
+  </div>
+        <!-- Search form -->
+        <form *ngIf="!(accountService.currentUser$ |async)" #loginForm="ngForm" class="d-flex" (ngSubmit)="login()" autocomplete="off">
+          <input
+          name="username"
+          [(ngModel)]="model.Username"
+            type="text"
+            class="form-control me-2"
+            placeholder="Username"
+            
+          />
+          <input
+          name="password"
+          [(ngModel)]="model.password"
+          type="password"
+          class="form-control me-2"
+          placeholder="Password"
+          
+        />
+        <div></div>
+          <button class="btn btn-outline-success" type="submit">
+            Login
+          </button>
+        </form>
+      </div>
+      <!-- Collapsible wrapper -->
+    </div>
+    <!-- Container wrapper -->
+  </nav>
+  <!-- Navbar -->
